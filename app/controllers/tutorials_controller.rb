@@ -1,11 +1,12 @@
 class TutorialsController < ApplicationController
 
+    before_action :set_tutorial, only: [:show, :edit, :update, :destroy]
+
     def index
         @tutorials = Tutorial.all
     end
 
     def show
-        @tutorial = Tutorial.find(params[:id])
     end
 
     def new
@@ -19,17 +20,14 @@ class TutorialsController < ApplicationController
     end
 
     def edit
-        @tutorial = Tutorial.find(params[:id])
     end
 
     def update
-        @tutorial = Tutorial.find(params[:id])
         @tutorial.update(tutorial_params)
         redirect_to tutorial_path(@tutorial)
     end
 
     def destroy
-        @tutorial = Tutorial.find(params[:id])
         @tutorial.destroy
         redirect_to restaurants_path
     end
@@ -38,6 +36,10 @@ class TutorialsController < ApplicationController
 
     def tutorial_params
         params.require(:tutorial).permit(:name, :category)
+    end
+
+    def set_tutorial
+        @tutorial = Tutorial.find(params[:id])
     end
 
 end

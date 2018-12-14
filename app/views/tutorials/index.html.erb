@@ -1,3 +1,7 @@
-<% @tutorials.each do |tutorial| %>
+<!-- <% @tutorials.each do |tutorial| %>
   <h2><%= tutorial.name %></h2>
+<% end %> -->
+
+<% @tutorials.each do |tutorial| %>
+  <%= link_to tutorial.name, tutorial_path(tutorial) %>
 <% end %>
